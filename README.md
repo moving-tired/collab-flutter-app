@@ -1,6 +1,6 @@
 # collab_flutter_app
 
-Collab Flutter 
+Collab Flutter
 
 ## Getting Started
 
