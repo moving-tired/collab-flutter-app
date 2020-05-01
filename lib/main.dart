@@ -5,7 +5,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() => runApp(MyApp());
 
-var location = new Location();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
