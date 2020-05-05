@@ -9,4 +9,8 @@ class LoggedUser {
   String get username => _username;
   String get name => _name;
   String get jwt => _jwt;
+
+  Map<String, String> toMap() {
+    return { id: id, username: username, name: name, jwt: jwt };
+  }
 }

@@ -1,26 +1,25 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:collab_flutter_app/models/logged_user.dart';
 import 'package:collab_flutter_app/models/login_user.dart';
 
 import 'http_utils.dart';
 
-
 class LoginNetwork {
   NetworkUtil _netUtil = new NetworkUtil();
-  // TODO: define url by parameters
-  static final BASE_URL = "http://YOUR_BACKEND_IP/login_app_backend";
-  static final LOGIN_URL = BASE_URL + "/login.php";
-  static final _API_KEY = "somerandomkey";
 
-  Future<LoginUser> login(String username, String password) {
-    return _netUtil.post(LOGIN_URL, body: {
-      "token": _API_KEY,
-      "username": username,
-      "password": password
-    }).then((dynamic res) {
-      print(res.toString());
-      if(res["error"]) throw new Exception(res["error_msg"]);
-      return new LoginUser.map(res["user"]);
+  static final version = "v1";
+  static final apiPath = "api";
+  static final baseUrl = "${NetworkUtil.BASE_URL}/$apiPath/$version";
+  static final loginUrl = "$baseUrl/user/sign_in";
+
+  Future<LoggedUser> login(String email, String password) async {
+    return _netUtil.post(loginUrl,
+        body: {"email": email, "password": password}).then((dynamic res) {
+      if (res["status"]) throw new Exception(res["status"]);
+      return new LoggedUser(
+          res["id"], res["username"], res["name"], res["jwt"]);
     });
   }
 }

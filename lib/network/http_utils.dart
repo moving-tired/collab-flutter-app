@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class NetworkUtil {
-  // next three lines makes this class a Singleton
+  static const String BASE_URL = "http://localhost:4000";
   static NetworkUtil _instance = new NetworkUtil.internal();
   NetworkUtil.internal();
   factory NetworkUtil() => _instance;
@@ -22,8 +22,8 @@ class NetworkUtil {
     });
   }
 
-  Future<dynamic> post(String url, {Map headers, body, encoding}) {
-    return http
+  Future<dynamic> post(String url, {Map headers, body, encoding}) async {
+    return await http
         .post(url, body: body, headers: headers, encoding: encoding)
         .then((http.Response response) {
       final String res = response.body;
