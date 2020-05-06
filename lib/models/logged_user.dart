@@ -1,16 +1,21 @@
 class LoggedUser {
-  String _id;
-  String _username;
-  String _name;
-  String _jwt;
-  LoggedUser(this._id, this._username, this._name, this._jwt);
+  final String id;
+  final String username;
+  final String name;
+  final String jwt;
 
-  String get id => _id;
-  String get username => _username;
-  String get name => _name;
-  String get jwt => _jwt;
+  LoggedUser({this.id, this.username, this.name, this.jwt});
+
+  factory LoggedUser.fromJson(Map<String, dynamic> json) {
+    return LoggedUser(
+      id: json['id'],
+      username: json['username'],
+      name: json['name'],
+      jwt: json['jwt'],
+    );
+  }
 
   Map<String, String> toMap() {
-    return { id: id, username: username, name: name, jwt: jwt };
+    return {id: id, username: username, name: name, jwt: jwt};
   }
 }

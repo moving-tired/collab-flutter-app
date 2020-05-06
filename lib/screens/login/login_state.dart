@@ -108,6 +108,7 @@ class LoginState extends State<LoginScreen>
     );
 
     return Scaffold(
+      key: scaffoldKey,
       body: Center(
         child: Container(
             color: Colors.white,

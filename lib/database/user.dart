@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' as io;
 
 import 'package:collab_flutter_app/database/helper.dart';
 import 'package:collab_flutter_app/models/logged_user.dart';
