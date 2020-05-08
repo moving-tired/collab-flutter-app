@@ -1,4 +1,5 @@
 import 'package:collab_flutter_app/models/logged_user.dart';
+import 'package:collab_flutter_app/network/http_utils.dart';
 import 'package:collab_flutter_app/network/login.dart';
 
 abstract class LoginScreenContract {
@@ -9,7 +10,7 @@ abstract class LoginScreenContract {
 
 class LoginScreenPresenter {
   LoginScreenContract _view;
-  LoginNetwork api = new LoginNetwork();
+  LoginNetwork api = new LoginNetwork(NetworkUtil.instance);
 
   LoginScreenPresenter(this._view);
 

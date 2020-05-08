@@ -1,4 +1,3 @@
-import 'package:collab_flutter_app/presenter/login_presenter.dart';
 import 'package:collab_flutter_app/screens/login/login_state.dart';
 import 'package:flutter/material.dart';
 

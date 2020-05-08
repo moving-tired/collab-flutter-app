@@ -5,6 +5,7 @@ import 'package:collab_flutter_app/listener/auth_state.dart';
 import 'package:collab_flutter_app/models/logged_user.dart';
 import 'package:collab_flutter_app/presenter/login_presenter.dart';
 import 'package:collab_flutter_app/screens/login/login.dart';
+import 'package:collab_flutter_app/screens/login/signup.dart';
 import 'package:flutter/material.dart';
 
 class LoginState extends State<LoginScreen>
@@ -78,6 +79,23 @@ class LoginState extends State<LoginScreen>
       ),
     );
 
+    final signUpForm = Container(
+        child: Row(
+      children: <Widget>[
+        Text('Does not have account?'),
+        FlatButton(
+          textColor: Colors.blue,
+          child: Text(
+            'Sign in',
+            style: TextStyle(fontSize: 20),
+          ),
+          onPressed: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignUp())),
+        )
+      ],
+      mainAxisAlignment: MainAxisAlignment.center,
+    ));
+
     final form = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +121,8 @@ class LoginState extends State<LoginScreen>
               ),
             ],
           ),
-        )
+        ),
+        signUpForm
       ],
     );
 

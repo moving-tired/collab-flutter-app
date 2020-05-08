@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:collab_flutter_app/models/logged_user.dart';
 
 import 'http_utils.dart';
 
 class LoginNetwork {
-  NetworkUtil _netUtil = new NetworkUtil();
+  final NetworkUtil netUtil;
+
+  const LoginNetwork(this.netUtil);
 
   static final version = "v1";
   static final apiPath = "api";
@@ -14,7 +16,7 @@ class LoginNetwork {
   static final loginUrl = "$baseUrl/user/sign_in";
 
   Future<LoggedUser> login(String email, String password) {
-    return _netUtil
+    return netUtil
         .post(loginUrl, body: {"email": email, "password": password})
         .then((res) => LoggedUser.fromJson(json.decode(res.body)));
   }

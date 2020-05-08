@@ -3,24 +3,23 @@ import 'dart:convert';
 import 'package:collab_flutter_app/models/client_error.dart';
 import 'package:collab_flutter_app/network/exceptions/client_request_exception.dart';
 import 'package:collab_flutter_app/network/exceptions/network_service_exception.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class NetworkUtil {
+  static final NetworkUtil instance = NetworkUtil(http.Client());
   static const String BASE_URL = "http://localhost:4000";
-  static NetworkUtil _instance = new NetworkUtil.internal();
 
-  NetworkUtil.internal();
+  final http.Client client;
 
-  factory NetworkUtil() => _instance;
+  const NetworkUtil(this.client);
 
   Future<Response> get(String url) {
-    return http.get(url).then((response) => parseResponse(response));
+    return client.get(url).then((response) => parseResponse(response));
   }
 
   Future<Response> post(String url, {Map headers, body, encoding}) {
-    return http
+    return client
         .post(url, body: body, headers: headers, encoding: encoding)
         .then((response) => parseResponse(response));
   }
