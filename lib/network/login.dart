@@ -13,7 +13,7 @@ class LoginNetwork {
   static final version = "v1";
   static final apiPath = "api";
   static final baseUrl = "${NetworkUtil.BASE_URL}/$apiPath/$version";
-  static final loginUrl = "$baseUrl/user/sign_in";
+  static final loginUrl = "$baseUrl/users/sign_in";
 
   Future<LoggedUser> login(String email, String password) {
     return netUtil
