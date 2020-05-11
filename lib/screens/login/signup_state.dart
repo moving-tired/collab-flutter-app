@@ -1,18 +1,23 @@
 import 'dart:ui';
 
+import 'package:collab_flutter_app/models/logged_user.dart';
+import 'package:collab_flutter_app/presenter/sign_up_presenter.dart';
 import 'package:collab_flutter_app/screens/login/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
-class SignUpState extends State<SignUp> {
+class SignUpState extends State<SignUp> implements SignUpScreenContract {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
-  String _password, _email, _phone;
+  String _password, _email, _phone, _name;
   DateTime _birthday;
+  SignUpScreenPresenter _presenter;
 
-  SignUpState() {}
+  SignUpState() {
+    this._presenter = new SignUpScreenPresenter(this);
+  }
 
   void _submit() {
     final form = formKey.currentState;
@@ -21,12 +26,23 @@ class SignUpState extends State<SignUp> {
       form.save();
       setState(() {
         _isLoading = true;
+        _presenter.doSignUp(_name, _email, _password, _phone, _birthday);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final nameField = TextFormField(
+      obscureText: false,
+      onSaved: (val) => _name = val,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Name",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
     final birthdayField = FlatButton(
         onPressed: () {
           DatePicker.showDatePicker(context,
@@ -111,6 +127,7 @@ class SignUpState extends State<SignUp> {
           key: formKey,
           child: Column(
             children: <Widget>[
+              nameField,
               SizedBox(height: 35.0),
               phoneField,
               SizedBox(height: 35.0),
@@ -147,5 +164,16 @@ class SignUpState extends State<SignUp> {
             )),
       ),
     );
+  }
+
+  @override
+  void onError(String errorTxt) {
+    print("some error");
+    // TODO: implement onLoginError
+  }
+
+  @override
+  void onSuccess() {
+    Navigator.pop(context);
   }
 }

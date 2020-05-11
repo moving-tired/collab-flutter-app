@@ -1,17 +1,17 @@
 class LoggedUser {
-  final String user;
+  final String name;
   final String token;
 
-  LoggedUser({this.user, this.token});
+  LoggedUser({this.name, this.token});
 
   factory LoggedUser.fromJson(Map<String, dynamic> json) {
     return LoggedUser(
-      user: json['user'],
-      token: json['token'],
+      name: json['data.name'],
+      token: json['data.token'],
     );
   }
 
   Map<String, String> toMap() {
-    return { user: user, token: token};
+    return { name: name, token: token};
   }
 }
