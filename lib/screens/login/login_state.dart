@@ -1,9 +1,10 @@
 import 'dart:ui';
 
-import 'package:collab_flutter_app/database/user.dart';
+import 'package:collab_flutter_app/database/logged_user.dart';
 import 'package:collab_flutter_app/listener/auth_state.dart';
 import 'package:collab_flutter_app/models/logged_user.dart';
 import 'package:collab_flutter_app/presenter/login_presenter.dart';
+import 'package:collab_flutter_app/screens/home/home.dart';
 import 'package:collab_flutter_app/screens/login/login.dart';
 import 'package:collab_flutter_app/screens/login/signup.dart';
 import 'package:flutter/material.dart';
@@ -147,12 +148,10 @@ class LoginState extends State<LoginScreen>
 
   @override
   void onLoginSuccess(LoggedUser user) async {
-    _showSnackBar(user.toString());
+    _showSnackBar(user.name);
     setState(() => _isLoading = false);
-    var db = new UserStorage();
-    await db.saveUser(user);
-    var authStateProvider = new AuthStateProvider();
-    authStateProvider.notify(AuthState.LOGGED_IN);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
   @override

@@ -1,4 +1,4 @@
-import 'package:collab_flutter_app/database/user.dart';
+import 'package:collab_flutter_app/database/logged_user.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
@@ -9,7 +9,7 @@ class DatabaseHelper {
 
   factory DatabaseHelper() => _instance;
 
-  static Database _db;
+  Database _db;
 
   Future<Database> get db async {
     if (_db != null) return _db;
@@ -28,6 +28,6 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE ${UserStorage.TABLE}(id INTEGER PRIMARY KEY, username TEXT, name TEXT, jwt TEXT)");
+        "CREATE TABLE ${UserStorage.TABLE}(id INTEGER PRIMARY KEY, name TEXT, jwt TEXT)");
   }
 }

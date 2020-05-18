@@ -1,4 +1,4 @@
-import 'package:collab_flutter_app/database/user.dart';
+import 'package:collab_flutter_app/database/logged_user.dart';
 
 enum AuthState{ LOGGED_IN, LOGGED_OUT }
 

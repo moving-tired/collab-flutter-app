@@ -5,7 +5,7 @@ import 'package:collab_flutter_app/models/logged_user.dart';
 
 class UserStorage {
 
-  static const String TABLE = "User";
+  static const String TABLE = "UserToken";
   static final DatabaseHelper _helper = DatabaseHelper();
 
   Future<int> saveUser(LoggedUser user) async {
