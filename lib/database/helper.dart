@@ -28,6 +28,6 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE ${UserStorage.TABLE}(id INTEGER PRIMARY KEY, name TEXT, jwt TEXT)");
+        "CREATE TABLE ${LoggedStorage.TABLE}(id INTEGER PRIMARY KEY, name TEXT, jwt TEXT)");
   }
 }

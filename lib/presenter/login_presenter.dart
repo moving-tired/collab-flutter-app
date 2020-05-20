@@ -12,7 +12,7 @@ abstract class LoginScreenContract {
 class LoginScreenPresenter {
   LoginScreenContract _view;
   LoginNetwork api = new LoginNetwork(NetworkUtil.instance);
-  UserStorage _storage = new UserStorage();
+  LoggedStorage _storage = new LoggedStorage();
 
   LoginScreenPresenter(this._view);
 

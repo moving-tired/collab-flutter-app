@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:collab_flutter_app/database/helper.dart';
 import 'package:collab_flutter_app/models/logged_user.dart';
 
-class UserStorage {
+class LoggedStorage {
 
   static const String TABLE = "UserToken";
   static final DatabaseHelper _helper = DatabaseHelper();

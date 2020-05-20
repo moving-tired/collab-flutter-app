@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:collab_flutter_app/models/logged_user.dart';
 import 'package:collab_flutter_app/presenter/sign_up_presenter.dart';
 import 'package:collab_flutter_app/screens/login/signup.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   String _password, _email, _phone, _name;
-  DateTime _birthday;
+  DateTime _birthday = DateTime.now();
   SignUpScreenPresenter _presenter;
 
   SignUpState() {
@@ -102,7 +101,7 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
                 color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
-    final loginButton = Material(
+    final signUpButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Colors.greenAccent,
@@ -143,7 +142,7 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
                   ? CircularProgressIndicator(
                       valueColor:
                           new AlwaysStoppedAnimation<Color>(Colors.purple))
-                  : loginButton,
+                  : signUpButton,
               SizedBox(
                 height: 15.0,
               ),
@@ -169,11 +168,12 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
   @override
   void onError(String errorTxt) {
     print("some error");
-    // TODO: implement onLoginError
+    setState(() => _isLoading = false);
   }
 
   @override
   void onSuccess() {
+    setState(() => _isLoading = false);
     Navigator.pop(context);
   }
 }

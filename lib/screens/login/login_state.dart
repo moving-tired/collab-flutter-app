@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:collab_flutter_app/database/logged_user.dart';
-import 'package:collab_flutter_app/listener/auth_state.dart';
 import 'package:collab_flutter_app/models/logged_user.dart';
 import 'package:collab_flutter_app/presenter/login_presenter.dart';
 import 'package:collab_flutter_app/screens/home/home.dart';
@@ -10,7 +8,7 @@ import 'package:collab_flutter_app/screens/login/signup.dart';
 import 'package:flutter/material.dart';
 
 class LoginState extends State<LoginScreen>
-    implements LoginScreenContract, AuthStateListener {
+    implements LoginScreenContract {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
@@ -20,8 +18,6 @@ class LoginState extends State<LoginScreen>
 
   LoginState() {
     this._presenter = new LoginScreenPresenter(this);
-    var authStateProvider = new AuthStateProvider();
-    authStateProvider.subscribe(this);
   }
 
   void _submit() {
@@ -154,8 +150,4 @@ class LoginState extends State<LoginScreen>
         context, MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
-  @override
-  void onAuthStateChanged(AuthState state) {
-    _showSnackBar("Success");
-  }
 }

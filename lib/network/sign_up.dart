@@ -20,6 +20,6 @@ class SignUpNetwork {
       "password": password,
       "phone": phone,
       "birthday": birthday.toIso8601String()
-    }).then(null);
+    });
   }
 }

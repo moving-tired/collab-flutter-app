@@ -1,3 +1,4 @@
+
 import 'package:collab_flutter_app/database/logged_user.dart';
 
 enum AuthState{ LOGGED_IN, LOGGED_OUT }
@@ -19,7 +20,7 @@ class AuthStateProvider {
   }
 
   void initState() async {
-    var db = new UserStorage();
+    var db = new LoggedStorage();
     var isLoggedIn = await db.isLoggedIn();
     if(isLoggedIn)
       notify(AuthState.LOGGED_IN);
