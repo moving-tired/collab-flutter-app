@@ -1,4 +1,3 @@
-import 'package:collab_flutter_app/models/logged_user.dart';
 import 'package:collab_flutter_app/network/http_utils.dart';
 import 'package:collab_flutter_app/network/sign_up.dart';
 

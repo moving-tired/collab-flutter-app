@@ -1,7 +1,8 @@
-import 'dart:async';
+import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps/google_maps.dart';
+import 'dart:ui' as ui;
 
 class MapSample extends StatefulWidget {
   @override
@@ -9,39 +10,34 @@ class MapSample extends StatefulWidget {
 }
 
 class MapSampleState extends State<MapSample> {
-  Completer<GoogleMapController> _controller = Completer();
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('Ask Location'),
-        icon: Icon(Icons.directions_boat),
-      ),
-    );
-  }
+    String htmlId = "7";
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
+      final myLatlng = LatLng(-34.6037, -58.3816);
+
+      final mapOptions = MapOptions()
+        ..zoom = 10
+        ..center = myLatlng;
+
+      final elem = DivElement()
+        ..id = htmlId
+        ..style.width = "100%"
+        ..style.height = "100%"
+        ..style.border = 'none';
+
+      final map = GMap(elem, mapOptions);
+
+      Marker(MarkerOptions()
+        ..position = myLatlng
+        ..map = map
+        ..title = 'Hello World!');
+
+      return elem;
+    });
+
+    return HtmlElementView(viewType: htmlId);
   }
 }
