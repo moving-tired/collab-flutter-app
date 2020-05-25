@@ -22,7 +22,7 @@ class _InputPasswordState extends State<InputPassword> {
         height: 60,
         width: MediaQuery.of(context).size.width,
         child: TextField(
-          onSubmitted: (val) => _password = val,
+          onChanged: (val) => _password = val,
           style: TextStyle(
             color: Colors.white,
           ),

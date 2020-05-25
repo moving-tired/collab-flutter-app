@@ -32,7 +32,7 @@ class _InputTextState extends State<InputText> {
         height: 60,
         width: MediaQuery.of(context).size.width,
         child: TextField(
-          onSubmitted: (val) => _text = val,
+          onChanged: (val) => _text = val,
           style: TextStyle(
             color: color,
           ),

@@ -17,7 +17,6 @@ class SignUp extends StatefulWidget {
 }
 
 class SignUpState extends State<SignUp> implements SignUpScreenContract {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   SubmitButton _signUpButton;
@@ -72,7 +71,7 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
       form.save();
       setState(() {
         _presenter.doSignUp(nameInputText.value, inputEmail.value,
-            inputPassword.value, nameInputText.value, inputDate.value);
+            inputPassword.value, phoneInputText.value, inputDate.value);
       });
     }
   }

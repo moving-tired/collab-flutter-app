@@ -24,7 +24,7 @@ class _InputEmailState extends State<InputEmail> {
         height: 60,
         width: MediaQuery.of(context).size.width,
         child: TextField(
-          onSubmitted: (val) => _email = val,
+          onChanged: (val) => _email = val,
           style: TextStyle(
             color: Colors.white,
           ),
