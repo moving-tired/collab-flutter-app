@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class SubmitButton extends StatefulWidget {
   _SubmitButtonState _state;
 
-  SubmitButton(String label, Function submit) {
-    _state = _SubmitButtonState(label: label, submit: submit);
+  SubmitButton(String label, Color color, Color textColor, Function submit) {
+    _state = _SubmitButtonState(
+        label: label, submit: submit, color: color, textColor: textColor);
   }
 
   void reset() {
@@ -19,8 +20,10 @@ class SubmitButton extends StatefulWidget {
 class _SubmitButtonState extends LoadWidgetState<SubmitButton> {
   final String label;
   final Function submit;
+  final Color color;
+  final Color textColor;
 
-  _SubmitButtonState({this.label, this.submit});
+  _SubmitButtonState({this.label, this.submit, this.color, this.textColor});
 
   @override
   Widget defaultWidget() {
@@ -32,8 +35,8 @@ class _SubmitButtonState extends LoadWidgetState<SubmitButton> {
         ),
         onPressed: () => load(),
         padding: EdgeInsets.all(12),
-        color: Colors.lightBlueAccent,
-        child: Text(label, style: TextStyle(color: Colors.white)),
+        color: color,
+        child: Text(label, style: TextStyle(color: textColor)),
       ),
     );
   }

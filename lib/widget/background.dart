@@ -1,20 +1,21 @@
+import 'package:collab_flutter_app/widget/scheme_colors.dart';
 import 'package:flutter/material.dart';
 
-class BackGround extends StatefulWidget {
-  _BackGroundState _state;
+class Background extends StatefulWidget {
+  _BackgroundState _state;
 
-  BackGround(Column column) {
-    _state = _BackGroundState(column: column);
+  Background(Column column) {
+    _state = _BackgroundState(column: column);
   }
 
   @override
-  _BackGroundState createState() => _state;
+  _BackgroundState createState() => _state;
 }
 
-class _BackGroundState extends State<BackGround> {
+class _BackgroundState extends State<Background> {
   final Column column;
 
-  _BackGroundState({this.column});
+  _BackgroundState({this.column});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,9 @@ class _BackGroundState extends State<BackGround> {
       body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [Colors.blueGrey, Colors.lightBlueAccent]),
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [SchemeColors.firstColor, SchemeColors.endColor]),
           ),
           child: column),
     );

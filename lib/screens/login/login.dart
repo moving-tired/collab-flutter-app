@@ -5,6 +5,7 @@ import 'package:collab_flutter_app/screens/login/signup.dart';
 import 'package:collab_flutter_app/widget/background.dart';
 import 'package:collab_flutter_app/widget/input_email.dart';
 import 'package:collab_flutter_app/widget/input_password.dart';
+import 'package:collab_flutter_app/widget/scheme_colors.dart';
 import 'package:collab_flutter_app/widget/submit_button.dart';
 import 'package:collab_flutter_app/widget/text_button.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,8 @@ class LoginState extends State<LoginScreen> implements LoginScreenContract {
         'Does not have account?',
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => SignUp())));
-    this._logInButton = SubmitButton('Log In', () => _submit());
+    this._logInButton = SubmitButton('Log In', SchemeColors.middleColor,
+        SchemeColors.background, () => _submit());
     this._presenter = new LoginScreenPresenter(this);
   }
 
@@ -72,7 +74,7 @@ class LoginState extends State<LoginScreen> implements LoginScreenContract {
       ],
     );
 
-    return Scaffold(key: scaffoldKey, body: BackGround(form));
+    return Scaffold(key: scaffoldKey, body: Background(form));
   }
 
   @override

@@ -4,7 +4,9 @@ import 'package:collab_flutter_app/widget/input_date.dart';
 import 'package:collab_flutter_app/widget/input_email.dart';
 import 'package:collab_flutter_app/widget/input_password.dart';
 import 'package:collab_flutter_app/widget/input_text.dart';
+import 'package:collab_flutter_app/widget/scheme_colors.dart';
 import 'package:collab_flutter_app/widget/submit_button.dart';
+import 'package:collab_flutter_app/widget/text_button.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -26,12 +28,12 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
   final InputDate inputDate = InputDate();
   final InputPassword inputPassword = InputPassword();
   final InputText nameInputText =
-      InputText('Name', Colors.white, Colors.blueAccent);
+      InputText('Name', SchemeColors.middleColor, SchemeColors.background);
   final InputText phoneInputText =
-      InputText('Phone', Colors.white, Colors.blueAccent);
+      InputText('Phone', SchemeColors.middleColor, SchemeColors.background);
 
   SignUpState() {
-    this._signUpButton = SubmitButton('Sign Up', () => _submit());
+    this._signUpButton = SubmitButton('Sign Up', SchemeColors.middleColor, SchemeColors.background, () => _submit());
     this._presenter = new SignUpScreenPresenter(this);
   }
 
@@ -50,7 +52,7 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
               inputEmail,
               inputPassword,
               inputDate,
-              BackButton(),
+              TextButton('Back', () => Navigator.pop(context)),
               _signUpButton,
             ],
           ),
@@ -60,7 +62,7 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
 
     return Scaffold(
       key: scaffoldKey,
-      body: BackGround(form)
+      body: Background(form)
     );
   }
 
