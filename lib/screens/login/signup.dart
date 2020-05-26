@@ -28,12 +28,12 @@ class SignUpState extends State<SignUp> implements SignUpScreenContract {
   final InputDate inputDate = InputDate();
   final InputPassword inputPassword = InputPassword();
   final InputText nameInputText =
-      InputText('Name', SchemeColors.middleColor, SchemeColors.background);
+      InputText('Name', SchemeColors.middleColor, SchemeColors.text);
   final InputText phoneInputText =
-      InputText('Phone', SchemeColors.middleColor, SchemeColors.background);
+      InputText('Phone', SchemeColors.middleColor, SchemeColors.text);
 
   SignUpState() {
-    this._signUpButton = SubmitButton('Sign Up', SchemeColors.middleColor, SchemeColors.background, () => _submit());
+    this._signUpButton = SubmitButton('Sign Up', SchemeColors.middleColor, SchemeColors.text, () => _submit());
     this._presenter = new SignUpScreenPresenter(this);
   }
 

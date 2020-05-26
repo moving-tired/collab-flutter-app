@@ -18,8 +18,19 @@ class LoginScreenPresenter {
 
   doLogin(String username, String password) {
     api.login(username, password).then((user) {
-      _storage.saveUser(user);
-      _view.onLoginSuccess(user);
+      _storage
+          .saveUser(user)
+          .whenComplete(() => _view.onLoginSuccess(user))
+          .catchError((error) => _view.onLoginError(error.toString()));
     }).catchError((error) => _view.onLoginError(error.toString()));
+  }
+
+  checkLogged() {
+    _storage.get().then((user) {
+      if (user != null) {
+        _view.onLoginSuccess(user);
+      }
+      print('user not logged yet');
+    }).catchError((onError) => print('user not logged yet'));
   }
 }

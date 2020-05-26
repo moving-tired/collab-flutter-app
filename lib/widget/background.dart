@@ -23,9 +23,9 @@ class _BackgroundState extends State<Background> {
       body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [SchemeColors.firstColor, SchemeColors.endColor]),
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [SchemeColors.firstColor, SchemeColors.background]),
           ),
           child: column),
     );

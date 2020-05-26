@@ -1,29 +1,27 @@
 import 'dart:async';
 
-import 'package:collab_flutter_app/database/helper.dart';
 import 'package:collab_flutter_app/models/logged_user.dart';
 
 class LoggedStorage {
 
   static const String TABLE = "UserToken";
-  static final DatabaseHelper _helper = DatabaseHelper();
+  static LoggedUser loggedUser;
 
-  Future<int> saveUser(LoggedUser user) async {
-    var dbClient = await _helper.db;
-    int res = await dbClient.insert(TABLE, user.toMap());
-    return res;
+  Future<void> saveUser(LoggedUser user) async {
+    loggedUser = user;
   }
 
-  Future<int> deleteUsers() async {
-    var dbClient = await _helper.db;
-    int res = await dbClient.delete(TABLE);
-    return res;
+  Future<void> deleteUser() async {
+    loggedUser = null;
   }
 
   Future<bool> isLoggedIn() async {
-    var dbClient = await _helper.db;
-    var res = await dbClient.query(TABLE);
-    return res.length > 0? true: false;
+    var loggedUser = await get();
+    return loggedUser != null;
+  }
+
+  Future<LoggedUser> get() async {
+    return loggedUser;
   }
 
 }

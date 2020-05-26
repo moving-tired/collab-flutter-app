@@ -1,5 +1,4 @@
 import 'package:collab_flutter_app/routes.dart';
-import 'package:collab_flutter_app/screens/login/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

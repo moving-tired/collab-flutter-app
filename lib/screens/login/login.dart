@@ -9,6 +9,7 @@ import 'package:collab_flutter_app/widget/scheme_colors.dart';
 import 'package:collab_flutter_app/widget/submit_button.dart';
 import 'package:collab_flutter_app/widget/text_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key, this.title}) : super(key: key);
@@ -34,8 +35,14 @@ class LoginState extends State<LoginScreen> implements LoginScreenContract {
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => SignUp())));
     this._logInButton = SubmitButton('Log In', SchemeColors.middleColor,
-        SchemeColors.background, () => _submit());
+        SchemeColors.text, () => _submit());
     this._presenter = new LoginScreenPresenter(this);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) { _presenter.checkLogged(); });
   }
 
   void _submit() {
@@ -85,7 +92,6 @@ class LoginState extends State<LoginScreen> implements LoginScreenContract {
 
   @override
   void onLoginSuccess(LoggedUser user) async {
-    _showSnackBar(user.name);
     _logInButton.reset();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomeScreen()));

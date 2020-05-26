@@ -1,3 +1,4 @@
+import 'package:collab_flutter_app/widget/scheme_colors.dart';
 import 'package:flutter/material.dart';
 
 class InputEmail extends StatefulWidget {
@@ -26,15 +27,12 @@ class _InputEmailState extends State<InputEmail> {
         child: TextField(
           onChanged: (val) => _email = val,
           style: TextStyle(
-            color: Colors.white,
+            color: SchemeColors.text,
           ),
           decoration: InputDecoration(
             border: InputBorder.none,
-            fillColor: Colors.lightBlueAccent,
+            fillColor: SchemeColors.hintText,
             hintText: 'Email',
-            labelStyle: TextStyle(
-              color: Colors.white70,
-            ),
           ),
         ),
       ),

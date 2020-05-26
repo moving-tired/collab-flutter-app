@@ -1,7 +1,11 @@
+import 'package:collab_flutter_app/widget/scheme_colors.dart';
 import 'package:flutter/material.dart';
 
 class InputPassword extends StatefulWidget {
   final state = _InputPasswordState();
+  final Color color;
+
+  InputPassword({this.color});
 
   String get value {
     return state._password;
@@ -24,15 +28,13 @@ class _InputPasswordState extends State<InputPassword> {
         child: TextField(
           onChanged: (val) => _password = val,
           style: TextStyle(
-            color: Colors.white,
+            color: SchemeColors.text,
           ),
           obscureText: true,
           decoration: InputDecoration(
             border: InputBorder.none,
+            fillColor: SchemeColors.hintText,
             hintText: 'Password',
-            labelStyle: TextStyle(
-              color: Colors.white70,
-            ),
           ),
         ),
       ),

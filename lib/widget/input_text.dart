@@ -34,15 +34,12 @@ class _InputTextState extends State<InputText> {
         child: TextField(
           onChanged: (val) => _text = val,
           style: TextStyle(
-            color: color,
+            color: textColor,
           ),
           decoration: InputDecoration(
             border: InputBorder.none,
-            fillColor: textColor,
+            fillColor: color,
             hintText: label,
-            labelStyle: TextStyle(
-              color: Colors.white70,
-            ),
           ),
         ),
       ),
